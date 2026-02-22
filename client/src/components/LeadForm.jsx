@@ -34,7 +34,7 @@ const LeadForm = ({ onSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginTop: "1rem" }}>
+    <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-4">
       <input
         type="text"
         name="name"
@@ -42,6 +42,7 @@ const LeadForm = ({ onSuccess }) => {
         value={form.name}
         onChange={handleChange}
         required
+        className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black"
       />
       <input
         type="email"
@@ -50,6 +51,7 @@ const LeadForm = ({ onSuccess }) => {
         value={form.email}
         onChange={handleChange}
         required
+        className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black"
       />
       <input
         type="text"
@@ -57,6 +59,7 @@ const LeadForm = ({ onSuccess }) => {
         placeholder="Company"
         value={form.company}
         onChange={handleChange}
+        className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black"
       />
       <input
         type="number"
@@ -65,8 +68,13 @@ const LeadForm = ({ onSuccess }) => {
         value={form.estimated_value}
         onChange={handleChange}
         required
+        className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black"
       />
-      <button type="submit" disabled={loading}>
+      <button
+        type="submit"
+        disabled={loading}
+        className="bg-black text-white rounded-lg py-2 font-medium hover:bg-gray-800 transition disabled:opacity-50"
+      >
         {loading ? "Submitting..." : "Submit Lead"}
       </button>
     </form>

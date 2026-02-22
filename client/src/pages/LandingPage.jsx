@@ -5,14 +5,19 @@ const LandingPage = () => {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h1>Boost Your Sales Pipeline</h1>
-      <p>Submit your leads and watch them flow into your dashboard automatically.</p>
+    <div className="p-8 font-sans min-h-screen bg-gray-50">
+      <h1 className="text-3xl font-bold mb-2">
+        Boost Your Sales Pipeline
+      </h1>
+
+      <p className="text-gray-600 mb-6">
+        Submit your leads and watch them flow into your dashboard automatically.
+      </p>
 
       {!submitted ? (
         <LeadForm onSuccess={() => setSubmitted(true)} />
       ) : (
-        <div style={{ marginTop: "1rem", color: "green" }}>
+        <div className="mt-4 text-green-600 font-medium">
           Lead submitted successfully!
         </div>
       )}

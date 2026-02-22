@@ -1,27 +1,31 @@
-
 const LeadTable = ({ leads, onStatusChange }) => {
   return (
-    <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}>
+    <table className="w-full border-collapse mt-4 text-sm">
       <thead>
-        <tr>
-          <th style={{ borderBottom: "1px solid #ccc", padding: "0.5rem" }}>Name</th>
-          <th style={{ borderBottom: "1px solid #ccc", padding: "0.5rem" }}>Email</th>
-          <th style={{ borderBottom: "1px solid #ccc", padding: "0.5rem" }}>Company</th>
-          <th style={{ borderBottom: "1px solid #ccc", padding: "0.5rem" }}>Estimated Value</th>
-          <th style={{ borderBottom: "1px solid #ccc", padding: "0.5rem" }}>Status</th>
+        <tr className="text-left border-b border-gray-200">
+          <th className="py-2 px-2">Name</th>
+          <th className="py-2 px-2">Email</th>
+          <th className="py-2 px-2">Company</th>
+          <th className="py-2 px-2">Estimated Value</th>
+          <th className="py-2 px-2">Status</th>
         </tr>
       </thead>
       <tbody>
-        {leads.map(lead => (
-          <tr key={lead.id}>
-            <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>{lead.name}</td>
-            <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>{lead.email}</td>
-            <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>{lead.company}</td>
-            <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>${lead.estimated_value}</td>
-            <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>
+        {leads.map((lead) => (
+          <tr key={lead.id} className="border-b border-gray-100 hover:bg-gray-50">
+            <td className="py-2 px-2">{lead.name}</td>
+            <td className="py-2 px-2">{lead.email}</td>
+            <td className="py-2 px-2">{lead.company}</td>
+            <td className="py-2 px-2 font-medium">
+              ${lead.estimated_value}
+            </td>
+            <td className="py-2 px-2">
               <select
                 value={lead.status}
-                onChange={(e) => onStatusChange(lead.id, e.target.value)}
+                onChange={(e) =>
+                  onStatusChange(lead.id, e.target.value)
+                }
+                className="border border-gray-300 rounded-md px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-black"
               >
                 <option value="new">New</option>
                 <option value="contacted">Contacted</option>

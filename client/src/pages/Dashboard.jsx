@@ -39,17 +39,19 @@ const Dashboard = () => {
   };
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h1>Admin Dashboard</h1>
+    <div className="min-h-screen bg-gray-50 p-8 font-sans">
+      <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
 
-      <div style={{ display: "flex", marginBottom: "1rem" }}>
+      <div className="flex flex-wrap gap-4 mb-6">
         <StatsCard title="Total Leads" value={stats.totalLeads} />
         <StatsCard title="Won Deals" value={stats.wonDeals} />
         <StatsCard title="Total Revenue" value={`$${stats.totalRevenue}`} />
         <StatsCard title="Conversion Rate" value={`${stats.conversionRate}%`} />
       </div>
 
-      <LeadTable leads={leads} onStatusChange={handleStatusChange} />
+      <div className="bg-white rounded-2xl shadow-sm p-6">
+        <LeadTable leads={leads} onStatusChange={handleStatusChange} />
+      </div>
     </div>
   );
 };
