@@ -33,12 +33,29 @@ export const updateLeadStatus = async (req, res) => {
     const { id } = req.params;
     const { status, closed_value } = req.body;
 
+        const leadResult = await pool.query(
+      "SELECT estimated_value FROM leads WHERE id = $1",
+      [id]
+    );
+
+    if (leadResult.rows.length === 0) {
+      return res.status(404).json({ error: "Lead not found" });
+    }
+
+    const estimatedValue = leadResult.rows[0].estimated_value;
+
+    let finalClosedValue = closed_value;
+
+    if (!closed_value) {
+      finalClosedValue = status === "won" ? estimatedValue : 0;
+    }
+
     const result = await pool.query(
       `UPDATE leads 
-       SET status = $1, closed_value = COALESCE($2, closed_value) 
+       SET status = $1, closed_value = $2 
        WHERE id = $3 
        RETURNING *`,
-      [status, closed_value, id]
+      [status, finalClosedValue, id]
     );
 
     res.status(200).json(result.rows[0]);
